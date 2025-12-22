@@ -12,23 +12,33 @@ $producto = new Producto();
 
 //JSON        : JavaScript Object Notation
 //Mecanismo de intercambio de datos
-if(isset($_POST['operacion'])){
+if (isset($_POST['operacion'])) {
 
   //El usuario nos envío una tarea...
-  switch($_POST['operacion']){
+  switch ($_POST['operacion']) {
     case 'listar':
       $registros = $producto->listar();
       echo json_encode($registros);
       break;
     case 'registrar':
-      //Algoritmo
-      break;  
+      //$_POST['variable'] ... son datos que vienen de la vista
+      $datos = [
+        'clasificacion' => $_POST['clasificacion'],
+        'marca'         => $_POST['marca'],
+        'descripcion'   => $_POST['descripcion'],
+        'garantia'      => $_POST['garantia'],
+        'ingreso'       => $_POST['ingreso'],
+        'cantidad'      => $_POST['cantidad'],
+      ];
+      $idbtenido = $producto->registrar($datos);
+      echo json_encode(["id"=>$idbtenido]);
+      break;
     case 'actualizar':
       //Algoritmo
       break;
     case 'eliminar':
       //Algoritmo  
-      break;  
+      break;
   }
 
 }
