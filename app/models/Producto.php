@@ -17,7 +17,7 @@ class Producto extends Conexion {
   //Nota:
     //El dato de retorno siempre está al lado derecho de los dos puntos
     // Todo procedimiento que acceda a una base de datos es susceptible a errores
-      // por ello se utiliza el bloque try catch
+    // por ello se utiliza el bloque try catch
     //El execute() está vacío cuando no hay comodines
 
   //¿Qué funciones podemos realizar?
@@ -125,8 +125,32 @@ class Producto extends Conexion {
     }
   }
 
-  public function buscar(){
+  public function buscar($id){
+    try{
+      //1. Crear la consulta SLQ
+      $sql = "
+      SELECT 
+        id,clasificacion, marca, descripcion, garantia, ingreso, cantidad
+        FROM productos
+        WHERE id=?
+      ";
 
+      //2. Enviar la consulta preparada a PDO
+      $consulta = $this->pdo->prepare($sql);
+
+      //3. Ejecutar la consulta
+      $consulta->execute(
+        array($id)  
+      );
+
+      //4. Entregar resultados
+      //fetchAll = colección de arreglos
+      //PDO::FETCH_ASSOC = los valores son asociativos
+      return $consulta->fetchAll(PDO::FETCH_ASSOC);
+      
+    }catch(Exception $e){
+      return [];
+    }
   }
  
 
