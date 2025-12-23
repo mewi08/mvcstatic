@@ -108,4 +108,22 @@ class Proveedor extends Conexion {
       return -1;
     }
   }
+  public function buscar($id){
+    
+    try{
+    $sql= "
+      SELECT idprov, razonsocial, ruc, telefono, origen, contacto, confianza 
+      FROM proveedores 
+      WHERE idprov=?";
+
+      $consulta = $this->pdo->prepare($sql);
+      $consulta->execute(
+        array($id )
+      );
+      return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch(Exception $e){
+      return [];
+    }
+  }
 }
