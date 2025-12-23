@@ -32,7 +32,6 @@ INSERT INTO proveedores(razonsocial, ruc, telefono, origen, contacto, confianza)
 ('Soluciones Informaticas S.A.', '20613323344', '998877665', 'N', 'Carlos Ruiz', 5);
 SELECT * FROM proveedores;
 
-
 INSERT INTO productos 
 (clasificacion, marca, descripcion, garantia, ingreso, cantidad) VALUES
 ('Equipo', 'Epson', 'Impresora L200', 24, '2025-10-05', 10),

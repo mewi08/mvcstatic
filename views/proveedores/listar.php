@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +21,7 @@
                 <th>Origen</th>
                 <th>Contacto</th>
                 <th>Confianza</th>
+                <th>Operaciones</th>
             </thead>
             <tbody>
                 <!-- Contenido dinámico, viene desde la BD -->
@@ -43,11 +44,12 @@
                     data.forEach(element => {
                         tabla.innerHTML+=`
                         <tr>
-                            <td>${element.id}</td>
+                            <td>${element.idprov}</td>
+                            <td>${element.razonsocial}</td>
                             <td>${element.ruc}</td>
                             <td>${element.telefono}</td>
                             <td>${element.origen}</td>
-                            <td>${element.contactos}</td>
+                            <td>${element.contacto}</td>
                             <td>${element.confianza}</td>
                             <td>
                                 <a href='#' class='btn btn-sm btn-danger'>Eliminar</a>

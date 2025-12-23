@@ -13,8 +13,18 @@ if (isset($_POST['operacion'])) {
       break;
 
     case 'registrar':
-      //Algoritmo
+      $datos = [
+        'razonsocial' => $_POST['razonsocial'],
+        'ruc'         => $_POST['ruc'],
+        'telefono'    => $_POST['telefono'],
+        'origen'      => $_POST['origen'],
+        'contacto'    => $_POST['contacto'],
+        'confianza'   => $_POST['confianza']
+      ];
+      $idobtenido = $proveedor->registrar($datos);
+      echo json_encode(["idproveedor"=>$idobtenido]);
       break;
+
     case 'actualizar':
       //Algoritmo
       break;
