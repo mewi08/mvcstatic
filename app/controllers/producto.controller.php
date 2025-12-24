@@ -39,6 +39,12 @@ if (isset($_POST['operacion'])) {
     case 'eliminar':
       //Algoritmo  
       break;
+    case 'buscarPorId':
+      echo json_encode($producto->buscarPorId($_POST['id']));
+      break;
+    case 'buscarPorMarca':
+      echo json_encode($producto->buscarPorMarca($_POST['marca']));
+      break;
   }
 
 }

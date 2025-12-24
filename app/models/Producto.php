@@ -125,33 +125,35 @@ class Producto extends Conexion {
     }
   }
 
-  public function buscar($id){
+  public function buscarPorId(int $id){
     try{
       //1. Crear la consulta SLQ
-      $sql = "
-      SELECT 
-        id,clasificacion, marca, descripcion, garantia, ingreso, cantidad
-        FROM productos
-        WHERE id=?
-      ";
+      $sql = "SELECT * FROM productos WHERE id=?";
 
-      //2. Enviar la consulta preparada a PDO
+      //2. Preparación
       $consulta = $this->pdo->prepare($sql);
 
       //3. Ejecutar la consulta
-      $consulta->execute(
-        array($id)  
-      );
-
-      //4. Entregar resultados
-      //fetchAll = colección de arreglos
-      //PDO::FETCH_ASSOC = los valores son asociativos
+      $consulta->execute(array($id));
+      //4. Resultado
       return $consulta->fetchAll(PDO::FETCH_ASSOC);
       
     }catch(Exception $e){
-      return [];
+      die($e->getMessage());
     }
   }
  
+  public function buscarPorMarca(string $marca){
+    try{
+      $sql= "SELECT * FROM productos WHERE marca=?";
 
+      $consulta = $this->pdo->prepare($sql);
+
+      $consulta->execute(array($marca));
+
+      return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }catch(Exception $e){
+      die($e->getMessage());
+    }
+  }
 }
