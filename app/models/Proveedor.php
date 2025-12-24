@@ -108,22 +108,46 @@ class Proveedor extends Conexion {
       return -1;
     }
   }
-  public function buscar($id){
+  public function buscarPorId(int $id): array{
     
     try{
-    $sql= "
-      SELECT idprov, razonsocial, ruc, telefono, origen, contacto, confianza 
-      FROM proveedores 
-      WHERE idprov=?";
+    $sql= "SELECT * FROM proveedores WHERE idprov=?";
 
       $consulta = $this->pdo->prepare($sql);
-      $consulta->execute(
-        array($id )
-      );
+
+      $consulta->execute(array($id));
+
       return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
     catch(Exception $e){
-      return [];
+      die($e->getMessage());
+    }
+  }
+  public function buscarPorOrigen(string $origen): array{
+    try{
+      $sql= "SELECT * FROM proveedores WHERE origen=?";
+
+      $consulta = $this->pdo->prepare($sql);
+
+      $consulta->execute(array($origen));
+
+      return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }catch(Exception $e){
+      die($e->getMessage());
+    }
+  }
+
+  public function buscarPorConfianza(int $confianza){
+    try{
+      $sql= "SELECT * FROM proveedores WHERE confianza=?";
+
+      $consulta = $this->pdo->prepare($sql);
+
+      $consulta->execute(array($confianza));
+
+      return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }catch(Exception $e){
+      die($e->getMessage());
     }
   }
 }

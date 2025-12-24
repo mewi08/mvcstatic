@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,8 +89,8 @@
                     .then(response => response.json())
                     .then(data =>{
                         const tabla = document.querySelector("#tabla-productos tbody")
+                         tabla.innerHTML = "";
                         data.forEach(element => {
-                            tabla.innerHTML = "";
                             tabla.innerHTML+=`
                             <tr>
                                 <td> ${element.id}</td>

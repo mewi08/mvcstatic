@@ -31,6 +31,15 @@ if (isset($_POST['operacion'])) {
     case 'eliminar':
       //Algoritmo  
       break;
+    case 'buscarPorId': 
+      echo json_encode($proveedor->buscarPorId($_POST['idprov']));
+      break;
+    case 'buscarPorOrigen':
+      echo json_encode($proveedor->buscarPorOrigen($_POST['origen']));
+      break;
+    case 'buscarPorConfianza':
+      echo json_encode($proveedor->buscarPorConfianza($_POST['nivelConfianza']));
+      break;    
   }
 
 }
